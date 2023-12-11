@@ -1,4 +1,5 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useState} from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import BestBooks from './BestBooks';
@@ -9,8 +10,23 @@ import {
   Route
 } from "react-router-dom";
 
-class App extends React.Component {
-  render() {
+let SERVER = import.meta.env.MONGO_URI;
+
+
+function App(){
+  
+  const [books, setBooks] = useState([]);
+
+    async function getBooks(){
+      try {
+        let response = await axios.get(`${SERVER}/books`)
+        setBooks(response.data);
+      }catch(error) {console.error(error.message)};
+    }
+
+
+
+
     return (
       <>
         <Router>
@@ -27,7 +43,7 @@ class App extends React.Component {
         </Router>
       </>
     )
-  }
+  
 }
 
 export default App;
