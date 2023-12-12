@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Carousel } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const URL = import.meta.env.VITE_LOCAL_MONGO;
 
@@ -39,7 +41,7 @@ class App extends Component {
               <Carousel.Item key={idx}>
                 <img
                 className="d-block w-100"
-                src= "https://placehold.co/800x400"
+                src= "https://placehold.co/800x400?text=Hello"
                 alt={book.title}/>
                 <Carousel.Caption>
                   <h5>{book.title}</h5>
