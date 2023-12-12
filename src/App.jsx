@@ -1,49 +1,52 @@
+
+import React, { Component } from 'react';
 import axios from 'axios';
-import React, {useState} from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import BestBooks from './BestBooks';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from "react-router-dom";
-
-let SERVER = import.meta.env.MONGO_URI;
 
 
-function App(){
-  
-  const [books, setBooks] = useState([]);
+const URL = import.meta.env.VITE_URL;
 
-    async function getBooks(){
-      try {
-        let response = await axios.get(`${SERVER}/library`)
-        setBooks(response.data);
-      }catch(error) {console.error(error.message)};
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchBooks();
+  }
+
+  async fetchBooks() {
+    try {
+      const response = await axios.get(`${URL}/books`);
+      console.log(reponse.data);
+      this.setState({ books: response.data });
+    } catch (error) {
+      console.error('Error fetching books:', error.message);
     }
+  }
 
-
-
+  render() {
+    const { books } = this.state;
 
     return (
-      <>
-        <Router>
-          <Header />
-          <Routes>
-            <Route 
-              exact path="/"
-              element={<BestBooks />}
-            >
-            </Route>
-            {/* PLACEHOLDER: add a route with a path of '/about' that renders the `About` component */}
-          </Routes>
-          <Footer />
-        </Router>
-      </>
-    )
-  
+      <div>
+        <h2>Best Books</h2>
+        {books.lenght > 0 ? (
+          
+
+          <ul>
+            {books.map((book,idx) => (
+              <li key={idx}>{book.title}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>Out of luck, nothing in the library!</p>
+        )}
+      </div>
+    );
+  }
 }
 
 export default App;
