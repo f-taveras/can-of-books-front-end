@@ -1,9 +1,9 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Carousel } from 'react-bootstrap';
 
-
-const URL = import.meta.env.VITE_URL;
+const URL = import.meta.env.VITE_LOCAL_MONGO;
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class App extends Component {
   async fetchBooks() {
     try {
       const response = await axios.get(`${URL}/books`);
-      console.log(reponse.data);
+      
       this.setState({ books: response.data });
     } catch (error) {
       console.error('Error fetching books:', error.message);
@@ -31,20 +31,28 @@ class App extends Component {
     const { books } = this.state;
 
     return (
-      <div>
+      <>
         <h2>Best Books</h2>
-        {books.lenght > 0 ? (
-          
-
-          <ul>
-            {books.map((book,idx) => (
-              <li key={idx}>{book.title}</li>
+        {books.length > 0 ? (
+          <Carousel data-bs-theme="dark">
+            {books.map((book, idx) => (
+              <Carousel.Item key={idx}>
+                <img
+                className="d-block w-100"
+                src= "https://placehold.co/800x400"
+                alt={book.title}/>
+                <Carousel.Caption>
+                  <h5>{book.title}</h5>
+                  <p>{book.status}</p>
+                  <p>{book.description}</p> 
+                </Carousel.Caption>
+              </Carousel.Item>
             ))}
-          </ul>
+          </Carousel>
         ) : (
-          <p>Out of luck, nothing in the library!</p>
+          <p>No books available.</p>
         )}
-      </div>
+      </>
     );
   }
 }
