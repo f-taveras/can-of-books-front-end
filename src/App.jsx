@@ -19,7 +19,7 @@ function App(){
 
     async function getBooks(){
       try {
-        let response = await axios.get(`${SERVER}/books`)
+        let response = await axios.get(`${SERVER}/book`)
         setBooks(response.data);
       }catch(error) {console.error(error.message)};
     }
