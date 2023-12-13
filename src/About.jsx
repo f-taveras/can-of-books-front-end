@@ -18,7 +18,7 @@ class Profile extends Component {
           bulk of the card's content.
         </Card.Text>
         <Card.Link href="https://github.com/ekowyawson">GitHub</Card.Link>
-        <Card.Link href="#">https://www.linkedin.com/in/ekowyawson71/</Card.Link>
+        <Card.Link href="https://www.linkedin.com/in/ekowyawson71/">LinkedIn</Card.Link>
       </Card.Body>
     </Card>
     <Card border="danger" style={{ width: '18rem', marginBottom: '10px' }}>
