@@ -1,0 +1,15 @@
+.overview {
+    max-width: 80vw;
+    min-height: 85vh;
+    margin: auto;
+    padding: 60px 30px;
+    padding-bottom: 30px;
+    background-image: url(../../assets/img/library_bg.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.nameEmphasis {
+    color: rgb(7, 134, 60);
+    font-weight: 800;
+}
