@@ -1,61 +1,52 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Ensure that your environment variable is correctly set
+const URL = import.meta.env.VITE_LOCAL_MONGO || 'default_fallback_value';
 
-const URL = import.meta.env.VITE_LOCAL_MONGO;
+const BestBooks = () => {
+  const [books, setBooks] = useState([]);
 
-class BestBooks extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: [],
-    };
-  }
+  useEffect(() => {
+    fetchBooks();
+  }, []);
 
-  componentDidMount() {
-    this.fetchBooks();
-  }
-
-  async fetchBooks() {
+  const fetchBooks = async () => {
     try {
       const response = await axios.get(`${URL}/books`);
-      
-      this.setState({ books: response.data });
+      setBooks(response.data);
     } catch (error) {
       console.error('Error fetching books:', error.message);
     }
-  }
+  };
 
-  render() {
-    const { books } = this.state;
-
-    return (
-      <>
-        <h2>Best Books</h2>
-        {books.length > 0 ? (
-          <Carousel data-bs-theme="dark">
-            {books.map((book, idx) => (
-              <Carousel.Item key={idx}>
-                <img
+  return (
+    <>
+      <h2>Best Books</h2>
+      {books.length > 0 ? (
+        <Carousel>
+          {books.map((book, idx) => (
+            <Carousel.Item key={idx}>
+              <img
                 className="d-block w-100"
-                src= "https://placehold.co/800x400?text=Hello"
-                alt={book.title}/>
-                <Carousel.Caption>
-                  <h5>{book.title}</h5>
-                  <p>{book.status}</p>
-                  <p>{book.description}</p> 
-                </Carousel.Caption>
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        ) : (
-          <p>No books available.</p>
-        )}
-      </>
-    );
-  }
-}
+                src="https://placehold.co/800x400?text=Hello"
+                alt={book.title}
+              />
+              <Carousel.Caption>
+                <h5>{book.title}</h5>
+                <p>{book.status}</p>
+                <p>{book.description}</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      ) : (
+        <p>No books available.</p>
+      )}
+    </>
+  );
+};
 
 export default BestBooks;

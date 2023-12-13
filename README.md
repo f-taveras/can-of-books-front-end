@@ -8,6 +8,11 @@
 
 This application (at some point) will display books searched by the user
 
+
+### LightHouse:
+
+![Lighthouse report](/can-of-books-front-end/src/img/lighthouse.png)
+
 ## Getting Started
 
 * Dependencies:
