@@ -9,6 +9,13 @@ class Profile extends Component {
 
 <>
 <h1 style={{ textAlign: 'center' }}>Meet our Team</h1>
+
+<div 
+  style={{
+    display:"flex",
+    justifyContent:"center",
+    gap: "1em"
+}}>
 <Card border="secondary" style={{ width: '18rem', marginBottom: '10px' }}>
       <Card.Body>
         <Card.Title>Ekow Yawson</Card.Title>
@@ -33,6 +40,7 @@ class Profile extends Component {
         <Card.Link href="https://www.linkedin.com/in/f-taveras">LinkedIn</Card.Link>
       </Card.Body>
     </Card>
+    </div>
     </>
 
     )
