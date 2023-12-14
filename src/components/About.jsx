@@ -21,8 +21,8 @@ class Profile extends Component {
         <Card.Title>Ekow Yawson</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">Back-End</Card.Subtitle>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+        I am a highly skilled professional software developer with a proven track record in full-stack web development, application development, and systems engineering. My proficiency extends to JavaScript, Python, BASH scripting, and SQL. Currently residing in Maryland, near Baltimore, I have had the pleasure of indulging in the best seafood America has to offer.
+
         </Card.Text>
         <Card.Link href="https://github.com/ekowyawson">GitHub</Card.Link>
         <Card.Link href="https://www.linkedin.com/in/ekowyawson71/">LinkedIn</Card.Link>

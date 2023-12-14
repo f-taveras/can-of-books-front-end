@@ -1,3 +1,47 @@
 .booksHeading {
     text-align: center;
 }
+
+.alertP {
+    text-align: center;
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.carouselItem {
+    background-color: black;
+    background-image: url(../../assets/img/library_2.jpg);
+    background-size: cover;
+}
+
+.carouselText {
+    color: azure;
+    height: 80%;
+    background-color: rgba(0, 0, 0, 0.603);
+}
+
+.carouselText h5 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 2px 2px 3px rgb(0, 0, 0);
+
+}
+
+.carouselText i {
+    font-style: italic;
+    color: rgb(150, 150, 150);
+    text-shadow: 2px 2px 3px rgb(0, 0, 0);
+}
+
+.carouselText p {
+    color: white;
+    font-weight: 800;
+    text-shadow: 2px 2px 3px rgb(0, 0, 0);
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+}

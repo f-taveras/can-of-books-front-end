@@ -4,3 +4,13 @@
     max-width: 80vw;
     min-height: 86vh;
 }
+
+.carousel-control-next,
+.carousel-control-prev {
+    background-color: rgba(0, 0, 0, 0.329);
+}
+
+img.libImg {
+    height: 60vh;
+    object-fit: contain;
+}
