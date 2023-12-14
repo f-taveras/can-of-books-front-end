@@ -19,10 +19,9 @@ const BookFormModal = ({ show, handleClose, handleAddBook }) => {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formTitle">
+          <Form.Group controlId="title">
             <Form.Label>Title</Form.Label>
             <Form.Control
-              id='title'
               name='title'
               type="text"
               placeholder="Enter book title"
@@ -31,23 +30,21 @@ const BookFormModal = ({ show, handleClose, handleAddBook }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId="formDescription">
+          <Form.Group controlId="description">
             <Form.Label>Description</Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
               name='description'
-              id='description'
               placeholder="Enter book description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
 
-          <Form.Group controlId="formTitle">
+          <Form.Group controlId="status">
             <Form.Label>Status</Form.Label>
             <Form.Control
-              id='status'
               name='status'
               type="text"
               value='Available'
