@@ -1,15 +1,13 @@
-// BestBooks.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
 import { Carousel, Button } from 'react-bootstrap';
 import BookFormModal from './BookModal';
 import EditBookModal from './EditBookModal';
 import Alert from 'react-bootstrap/Alert';
 
-import styles from './bestbooks.module.css';
 
-const URL = import.meta.env.VITE_LOCAL_MONGO;
-// const API = import.meta.env.VITE_BKEND_API;
+const URL = import.meta.env.VITE_LOCAL_MONGO || 'default_fallback_value';
 
 // TRUNCATE LONG TEXT
 const text_truncate = (str, length, ending) => {
@@ -31,8 +29,10 @@ const BestBooks = () => {
   const [activeIndex, setActiveIndex] = useState(0); // New state to track active index
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+
   const [showAlert, setShowAlert] = useState(false);
   const [selectedBook, setSelectedBook] = useState('');
+
 
   // GET ALL BOOKS IN LIBRARY
   const fetchBooks = async () => {
@@ -48,6 +48,7 @@ const BestBooks = () => {
   const handleAddBook = async (bookData) => {
     try {
       const response = await axios.post(`${URL}/addBook`, bookData);
+
       
       if (response.data) {
         setBooks([...books, response.data]);
@@ -81,11 +82,13 @@ const BestBooks = () => {
       } else {
         setShowAlert(`ERROR: Something went wrong while attempting to update your book`);
       }
+
     } catch (error) {
       setShowAlert(`ERROR: ${error.message}. Book most likely exists in database.`);
       console.error('Error adding book:', error.message);
     }
   };
+
 
   // DELETE BOOK FROM LIBRARY
   const handleDeleteBook = async (bookId, currentIndex) => {
@@ -104,6 +107,7 @@ const BestBooks = () => {
         console.log(response.status, response.statusText);
         setShowAlert(`ERROR ${response.status}: ${response.statusText}`);
       }
+
     } catch (error) {
       setShowAlert(`Error deleting book: ${error.message}`);
       console.error('Error deleting book:', error.message);
@@ -116,7 +120,36 @@ const BestBooks = () => {
 
   // HANDLE MODAL
   const handleShowModal = () => setShowModal(true);
-  const handleCloseModal = () => setShowModal(false);
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setNewBookData({
+      title: '',
+      status: '',
+      description: '',
+    });
+  };
+
+  const handleShowEditModal = (book) => {
+    
+    setShowEditModal(true);
+    setEditBookData(book);
+    setNewBookData({
+      title:book.title,
+      status:book.status,
+      description:book.description
+    })
+
+  };
+
+  const handleCloseEditModal = () => {
+    setShowEditModal(false);
+    setEditBookData({});
+    setNewBookData({
+      title: '',
+      status: '',
+      description: '',
+    });
+  };
 
   const handleShowEditModal = (book) => {
     setSelectedBook(book);
@@ -129,10 +162,11 @@ const BestBooks = () => {
 
   return (
     <>
-      <h2 className={styles.booksHeading}>Best Books</h2>
+      <h2>Best Books</h2>
       <Button variant="primary" onClick={handleShowModal}>
         Add Book
       </Button>
+
 
       {/* SHOW ERROR MESSAGE IF DELETE RAISES ERROR */}
       {showAlert
@@ -144,6 +178,7 @@ const BestBooks = () => {
               <Button variant="dark"
                 onClick={() => setShowAlert(false)}>
                 Close
+
               </Button>
             </Alert>
           : null}
@@ -180,6 +215,7 @@ const BestBooks = () => {
         </Carousel>
       )}
 
+
       <BookFormModal
         show={showModal}
         handleClose={handleCloseModal}
@@ -196,6 +232,7 @@ const BestBooks = () => {
         bookDescription={selectedBook.description}
         bookStatus={selectedBook.status}
       /> : null}
+
     </>
   );
 };
