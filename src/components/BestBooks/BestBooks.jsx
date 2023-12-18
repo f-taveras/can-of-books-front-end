@@ -8,7 +8,7 @@ import Alert from 'react-bootstrap/Alert';
 
 import styles from './bestbooks.module.css';
 
-const URL = import.meta.env.VITE_LOCAL_MONGO;
+const URL = import.meta.env.VITE_MONGO;
 // const API = import.meta.env.VITE_BKEND_API;
 
 // TRUNCATE LONG TEXT
