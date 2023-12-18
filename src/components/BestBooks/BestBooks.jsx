@@ -7,7 +7,10 @@ import EditBookModal from './EditBookModal';
 import Alert from 'react-bootstrap/Alert';
 
 
-const URL = import.meta.env.VITE_LOCAL_MONGO || 'default_fallback_value';
+
+const URL = import.meta.env.VITE_MONGO;
+// const API = import.meta.env.VITE_BKEND_API;
+
 
 // TRUNCATE LONG TEXT
 const text_truncate = (str, length, ending) => {

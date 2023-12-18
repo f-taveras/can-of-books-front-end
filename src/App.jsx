@@ -4,17 +4,13 @@ import Footer from './components/Footer/Footer';
 import BestBooks from './components/BestBooks/BestBooks';
 import About from './components/About';
 import Home from './components/Home/Home';
-import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom";
-
-const API = import.meta.env.VITE_BKEND_API;
 
 function App() {
   return (
