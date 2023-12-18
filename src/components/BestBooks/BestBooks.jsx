@@ -154,14 +154,6 @@ const BestBooks = () => {
     });
   };
 
-  const handleShowEditModal = (book) => {
-    setSelectedBook(book);
-    setShowEditModal(true);
-  };
-  const handleCloseEditModal = () => {
-    setSelectedBook('');
-    setShowEditModal(false);
-  };
 
   return (
     <>
